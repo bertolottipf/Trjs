@@ -1,0 +1,582 @@
+<!--
+Trjs
+creato da BERTOLOTTI Paolo Francesco
+e distribuito sotto licenza Commons Creative senza scopo di lucro v. 3
+
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.5.2.min.js"></script>
+		<script type="text/javascript">
+			<!--//
+			
+			var sign1 = "X";
+			var sign2 = "O";
+			
+			var gamer1 = sign1; /** cambiare questo per cambiare segno */
+			var gamer2;
+			
+			if (gamer1 == sign1) {
+				gamer2 = sign2;
+			} else if (gamer1 == sign2) {
+				gamer2 = sign1;
+			}
+			
+			var gamerPC = gamer2;
+			var playPC = true;
+			
+			/** il simbolo iniziante il gioco */
+			var ox = gamer1;
+			
+			
+			/**
+			 * REGOLE DEL GIOCO GENERALI
+			 * ossia tutti i controlli generali del gioco
+			 */
+			function tris(cella) {
+				
+				var cliccato = $("#".concat(cella)).val();
+				
+				if (cliccato == "") {
+					
+					/** scrivo simbolo e valore nella cella */
+					$("#".concat(cella)).html(ox);
+					$("#".concat(cella)).val(ox);
+				
+					console.log("giocatore mette in cella " + cella);
+					
+					controlWin(cella);
+					
+					changeGamer();
+					if (playPC == true) {
+						pcGame();
+					}
+				}
+			}
+			
+			
+			/**
+			 * CAMBIA GIOCATORE
+			 * ossia il simbolo 
+			 */
+			function changeGamer() {
+				if (ox == gamer1) {
+					ox = gamer2;
+				} else if (ox == gamer2) {
+					ox = gamer1;
+				}
+				
+				console.log("ora gioca " + ox);
+			}
+			
+			
+			/**
+			 * Gioca il PC
+			 * ossia come muova il PC!
+			 */
+			function pcGame() {
+				
+				var cell1 = $('#cell1').val();
+				var cell2 = $('#cell2').val();
+				var cell3 = $('#cell3').val();
+				var cell4 = $('#cell4').val();
+				var cell5 = $('#cell5').val();
+				var cell6 = $('#cell6').val();
+				var cell7 = $('#cell7').val();
+				var cell8 = $('#cell8').val();
+				var cell9 = $('#cell9').val();
+				
+				
+				if (cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else 
+				
+				/**
+				 * attacco : vincita a portata di mossa 
+				 */
+				 
+				/** attacco orizzontali */
+				if (cell1 == gamerPC && cell2 == gamerPC && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else if (cell1 == gamerPC && cell3 == gamerPC && cell2 == "") {
+					cella = "cell2";
+					console.log("pc mette in cella 2");
+				} else if (cell2 == gamerPC && cell3 == gamerPC && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell4 == gamerPC && cell5 == gamerPC && cell6 == "") {
+					cella = "cell6";
+					console.log("pc mette in cella 6");
+				} else if (cell4 == gamerPC && cell6 == gamerPC && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamerPC && cell6 == gamerPC && cell4 == "") {
+					cella = "cell4";
+					console.log("pc mette in cella 4");
+				} else 
+				if (cell7 == gamerPC && cell8 == gamerPC && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell7 == gamerPC && cell9 == gamerPC && cell8 == "") {
+					cella = "cell8";
+					console.log("pc mette in cella 8");
+				} else if (cell8 == gamerPC && cell9 == gamerPC && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else 
+				
+				/** attacco verticali */
+				if (cell1 == gamerPC && cell4 == gamerPC && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else if (cell1 == gamerPC && cell7 == gamerPC && cell4 == "") {
+					cella = "cell4";
+					console.log("pc mette in cella 4");
+				} else if (cell4 == gamerPC && cell7 == gamerPC && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell2 == gamerPC && cell5 == gamerPC && cell8 == "") {
+					cella = "cell8";
+					console.log("pc mette in cella 8");
+				} else if (cell2 == gamerPC && cell8 == gamerPC && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamerPC && cell8 == gamerPC && cell2 == "") {
+					cella = "cell2";
+					console.log("pc mette in cella 2");
+				} else 
+				if (cell3 == gamerPC && cell6 == gamerPC && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell3 == gamerPC && cell9 == gamerPC && cell6 == "") {
+					cella = "cell6";
+					console.log("pc mette in cella 6");
+				} else if (cell6 == gamerPC && cell9 == gamerPC && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else 
+				
+				/** attacco obliqui */
+				if (cell1 == gamerPC && cell5 == gamerPC && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell1 == gamerPC && cell9 == gamerPC && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamerPC && cell9 == gamerPC && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell3 == gamerPC && cell5 == gamerPC && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else if (cell3 == gamerPC && cell7 == gamerPC && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamerPC && cell7 == gamerPC && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else 
+				
+				
+				/** 
+				 * difesa : controllo array quasi vincenti dell'avversario
+				 */
+				
+				/** difesa orizzontali */
+				if (cell1 == gamer1 && cell2 == gamer1 && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else if (cell1 == gamer1 && cell3== gamer1 && cell2 == "") {
+					cella = "cell2";
+					console.log("pc mette in cella 2");
+				} else if (cell2 == gamer1 && cell3 == gamer1 && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell4 == gamer1 && cell5 == gamer1 && cell6 == "") {
+					cella = "cell6";
+					console.log("pc mette in cella 6");
+				} else if (cell4 == gamer1 && cell6 == gamer1 && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamer1 && cell6 == gamer1 && cell4 == "") {
+					cella = "cell4";
+					console.log("pc mette in cella 4");
+				} else 
+				if (cell7 == gamer1 && cell8 == gamer1 && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell7 == gamer1 && cell9 == gamer1 && cell8 == "") {
+					cella = "cell8";
+					console.log("pc mette in cella 8");
+				} else if (cell8 == gamer1 && cell9 == gamer1 && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else 
+				
+				/** difesa verticali */
+				if (cell1 == gamer1 && cell4 == gamer1 && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else if (cell1 == gamer1 && cell7 == gamer1 && cell4 == "") {
+					cella = "cell4";
+					console.log("pc mette in cella 4");
+				} else if (cell4 == gamer1 && cell7 == gamer1 && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell2 == gamer1 && cell5 == gamer1 && cell8 == "") {
+					cella = "cell8";
+					console.log("pc mette in cella 8");
+				} else if (cell2 == gamer1 && cell8 == gamer1 && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamer1 && cell8 == gamer1 && cell2 == "") {
+					cella = "cell2";
+					console.log("pc mette in cella 2");
+				} else 
+				if (cell3 == gamer1 && cell6 == gamer1 && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell3 == gamer1 && cell9 == gamer1 && cell6 == "") {
+					cella = "cell6";
+					console.log("pc mette in cella 6");
+				} else if (cell6 == gamer1 && cell9 == gamer1 && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else 
+				
+				/** difesa obliqui */
+				if (cell1 == gamer1 && cell5 == gamer1 && cell9 == "") {
+					cella = "cell9";
+					console.log("pc mette in cella 9");
+				} else if (cell1 == gamer1 && cell9 == gamer1 && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamer1 && cell9 == gamer1 && cell1 == "") {
+					cella = "cell1";
+					console.log("pc mette in cella 1");
+				} else 
+				if (cell3 == gamer1 && cell5 == gamer1 && cell7 == "") {
+					cella = "cell7";
+					console.log("pc mette in cella 7");
+				} else if (cell3 == gamer1 && cell7 == gamer1 && cell5 == "") {
+					cella = "cell5";
+					console.log("pc mette in cella 5");
+				} else if (cell5 == gamer1 && cell7 == gamer1 && cell3 == "") {
+					cella = "cell3";
+					console.log("pc mette in cella 3");
+				} else {
+					
+					/** attacco : le mosse da fare se non c'è bisogno di difendere */
+
+					var cicla = true;
+					
+					if ( $("#cell1").val() != "" && 
+							$("#cell3").val() != "" && 
+							$("#cell7").val() != "" &&
+							$("#cell9").val() != "") {
+						
+						if (cell2 == "") { 
+							numeroCella = 2;
+						} else if (cell4 == "") {
+							numeroCella = 4;
+						} else if (cell6 == "") {
+							numeroCella = 6;
+						} else if (cell8 == "") {
+							numeroCella = 8;
+						}
+						
+						cella = "cell".concat(numeroCella);
+						
+					} else {
+						do {
+							var numeroCella = Math.floor(Math.random() * 4 + 1);
+							
+							switch (numeroCella) {
+								case 1 :
+									break;
+								case 2 :
+									numeroCella = 3;
+									break;
+								case 3 :
+									numeroCella = 7;
+									break;
+								case 4 :
+									numeroCella = 9;
+									break;
+								default :
+									console.log("Errore 001");
+							}
+							
+							
+							
+							if ($('#cell'.concat(numeroCella)).val() == "") {
+								cicla = false;
+								cella = "cell".concat(numeroCella);
+							}
+						} while (cicla == true);
+					}
+					console.log("numeroCella = " + numeroCella);
+				}
+				
+				if($("#".concat(cella)).val() == "") {
+					$("#".concat(cella)).html(gamerPC);
+					$("#".concat(cella)).val(gamerPC);
+				}
+				
+				controlWin(cella);
+				
+				changeGamer();
+				
+			}
+			
+			
+			
+			/**
+			 * CONTROLLA LA VINCITA AL GIOCO
+			 * ossia tutte le possibilità di vincita
+			 */
+			function controlWin(cella) {
+				
+				var cell1 = $("#cell1").val();
+				var cell2 = $("#cell2").val();
+				var cell3 = $("#cell3").val();
+				var cell4 = $("#cell4").val();
+				var cell5 = $("#cell5").val();
+				var cell6 = $("#cell6").val();
+				var cell7 = $("#cell7").val();
+				var cell8 = $("#cell8").val();
+				var cell9 = $("#cell9").val();
+				
+				/*alert(cell1 + " " + cell2 + " " + cell3 + "\n" + 
+					cell4  + " " + cell5 + " " + cell6 + "\n" +
+					cell7 + " " + cell8 + " " + cell9);*/
+				
+				if (cella == "cell1") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell2") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell3") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell4") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					}
+				} else if (cella == "cell5") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell6") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell7") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell8") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else if (cella == "cell9") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) )
+					) {
+						alert("Winner is " + $('#'.concat(cella)).val() + "!");
+						console.log(" >>>>  ha vinto " + $('#'.concat(cella)).val())
+						newGame();
+					} else if (cell1 != "" && cell2 != "" && cell3 != "" && cell4 != "" && cell5 != "" && cell6 != "" && cell7 != "" && cell8 != "" && cell9 != "" ) {
+						alert ("NO winner!");
+						newGame();
+					}
+				} else {
+				}
+			}
+			
+			
+			/**
+			 * REIMPOSTA INIZIO GIOCO
+			 * ossia tutte le variabili del gioco
+			 */
+			function newGame() {
+				
+				$('#cell1').html("");
+				$('#cell2').html("");
+				$('#cell3').html("");
+				$('#cell4').html("");
+				$('#cell5').html("");
+				$('#cell6').html("");
+				$('#cell7').html("");
+				$('#cell8').html("");
+				$('#cell9').html("");
+				
+				$('#cell1').val("");
+				$('#cell2').val("");
+				$('#cell3').val("");
+				$('#cell4').val("");
+				$('#cell5').val("");
+				$('#cell6').val("");
+				$('#cell7').val("");
+				$('#cell8').val("");
+				$('#cell9').val("");
+				
+				console.log("------- nuova partita ------- ")
+			}
+			
+			//-->
+		</script>
+		
+		<style type="text/css">
+			
+			body {
+				font: 36px Arial black;
+				margin: 0px auto;
+			}
+			
+			h1 {
+				font-size: 16px;
+			}
+			
+			h2 {
+				font-size: 9px
+			}
+			
+			.row {
+				height: 51px;
+			}
+				
+			.cell {
+				width: 50px;
+				height: 50px;
+				float:left;
+				text-align: center;
+			}
+			
+			.left {
+				border-right: 1px solid black;
+			}
+			.medium {
+				border-right: 1px solid black;
+			}
+			.right {
+				/*border-right: 1px solid black;*/
+			}
+			
+			.top { 
+				border-bottom: 1px solid black;
+			}
+			.middle {
+				border-bottom: 1px solid black;
+			}
+			.bottom {
+				/*border-bottom: 1px solid black;*/
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Trjs versione 1.0</h1>
+		<h2>by BERTOLOTTI Paolo Francesco</h2>
+		
+		<div class="row">
+			<div class="left top cell" onclick="tris('cell1')" id="cell1"></div>
+			<div class="medium top cell" onclick="tris('cell2')" id="cell2"></div>
+			<div class="right top cell" onclick="tris('cell3')" id="cell3"></div>
+		</div>
+		<div class="row">
+			<div class="left middle cell" onclick="tris('cell4')" id="cell4"></div>
+			<div class="medium middle cell" onclick="tris('cell5')" id="cell5"></div>
+			<div class="right middle cell" onclick="tris('cell6')" id="cell6"></div>
+		</div>
+		<div class="row">
+			<div class="left bottom cell" onclick="tris('cell7')" id="cell7"></div>
+			<div class="medium bottom cell" onclick="tris('cell8')" id="cell8"></div>
+			<div class="right bottom cell" onclick="tris('cell9')" id="cell9"></div>
+		</div>
+	</body>
+</html>

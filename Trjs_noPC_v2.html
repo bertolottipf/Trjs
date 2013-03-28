@@ -1,0 +1,275 @@
+<!--
+Trjs v. 1.0
+creato da BERTOLOTTI Paolo Francesco
+e distribuito sotto licenza Commons Creative senza scopo di lucro v. 3
+
+-->
+
+<!--Doctipe????-->
+<html>
+	<head>
+		<script type="text/javascript">
+			<!--//
+						
+			var sign1 = "X";
+			var sign2 = "O";
+			
+			var gamer1 = sign1;
+			var gamer2 = sign2;
+			
+			var ox = gamer1;
+			
+			
+			/**
+			 * REGOLE DEL GIOCO GENERALI
+			 * ossia tutti i controlli generali del gioco
+			 */
+			function tris(a) {
+				
+				var cliccato = document.getElementById(a).value;
+				
+				if (cliccato == undefined || cliccato == "") {
+					// scrivo il simbolo nella cella
+					document.getElementById(a).innerHTML = ox;
+					document.getElementById(a).value = ox;
+					
+					
+					controlWin(a);
+					changeGamer();	
+				}
+			}
+			
+			/**
+			 * CAMBIA GIOCATORE
+			 * ossia il simbolo 
+			 */
+			function changeGamer() {
+				if (ox == gamer1) {
+					ox = gamer2;
+				} else if (ox == gamer2) {
+					ox = gamer1;
+				}
+			}
+			
+			/**
+			 * CONTROLLA LA VINCITA AL GIOCO
+			 * ossia tutte le possibilità di vincita
+			 */
+			function controlWin(a) {
+			
+				var cell1 = document.getElementById("cell1").value;
+				var cell2 = document.getElementById("cell2").value;
+				var cell3 = document.getElementById("cell3").value;
+				var cell4 = document.getElementById("cell4").value;
+				var cell5 = document.getElementById("cell5").value;
+				var cell6 = document.getElementById("cell6").value;
+				var cell7 = document.getElementById("cell7").value;
+				var cell8 = document.getElementById("cell8").value;
+				var cell9 = document.getElementById("cell9").value;
+				
+				/*alert(cell1 + " " + cell2 + " " + cell3 + "\n" + 
+					cell4  + " " + cell5 + " " + cell6 + "\n" +
+					cell7 + " " + cell8 + " " + cell9);*/
+				
+				if (a == "cell1") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell2") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell3") {
+					if (
+						( (cell1 == cell2) && (cell2 == cell3) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell4") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell5") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell6") {
+					if (
+						( (cell4 == cell5) && (cell5 == cell6) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell7") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell1 == cell4) && (cell4 == cell7) ) ||
+						( (cell3 == cell5) && (cell5 == cell7) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell8") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell2 == cell5) && (cell5 == cell8) )
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+				
+				if (a == "cell9") {
+					if (
+						( (cell7 == cell8) && (cell8 == cell9) ) ||
+						( (cell3 == cell6) && (cell6 == cell9) ) ||
+						( (cell1 == cell5) && (cell5 == cell9) ) 
+					) {
+						alert("Winner is " + document.getElementById(a).value + "!");
+						newGame();
+					}
+				}
+			}
+			
+			/**
+			 * REIMPOSTA INIZIO GIOCO
+			 * ossia tutte le variabili del gioco
+			 */
+			function newGame() {
+				cell1 = "";
+				cell2 = "";
+				cell3 = "";
+				cell4 = "";
+				cell5 = "";
+				cell6 = "";
+				cell7 = "";
+				cell8 = "";
+				cell9 = "";
+				document.getElementById('cell1').innerHTML = "";
+				document.getElementById('cell2').innerHTML = "";
+				document.getElementById('cell3').innerHTML = "";
+				document.getElementById('cell4').innerHTML = "";
+				document.getElementById('cell5').innerHTML = "";
+				document.getElementById('cell6').innerHTML = "";
+				document.getElementById('cell7').innerHTML = "";
+				document.getElementById('cell8').innerHTML = "";
+				document.getElementById('cell9').innerHTML = "";
+				document.getElementById('cell1').value = "";
+				document.getElementById('cell2').value = "";
+				document.getElementById('cell3').value = "";
+				document.getElementById('cell4').value = "";
+				document.getElementById('cell5').value = "";
+				document.getElementById('cell6').value = "";
+				document.getElementById('cell7').value = "";
+				document.getElementById('cell8').value = "";
+				document.getElementById('cell9').value = "";
+			}
+			
+			//-->
+		</script>
+		
+		<style type="text/css">
+			
+			body {
+				font: 36px Arial black;
+				margin: 0px auto;
+			}
+			
+			h1 {
+				font-size: 16px;
+			}
+			
+			h2 {
+				font-size: 9px
+			}
+			
+			.row {
+				height: 51px;
+			}
+				
+			.cell {
+				width: 50px;
+				height: 50px;
+				float:left;
+				text-align: center;
+			}
+			
+			.left {
+				border-right: 1px solid black;
+			}
+			.medium {
+				border-right: 1px solid black;
+			}
+			.right {
+				/*border-right: 1px solid black;*/
+			}
+			
+			.top { 
+				border-bottom: 1px solid black;
+			}
+			.middle {
+				border-bottom: 1px solid black;
+			}
+			.bottom {
+				/*border-bottom: 1px solid black;*/
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Trjs versione 1.0</h1>
+		<h2>by BERTOLOTTI Paolo Francesco</h2>
+		
+		<div class="row">
+			<div class="left top cell" onclick="tris('cell1')" id="cell1"></div>
+			<div class="medium top cell" onclick="tris('cell2')" id="cell2"></div>
+			<div class="right top cell" onclick="tris('cell3')" id="cell3"></div>
+		</div>
+		<div class="row">
+			<div class="left middle cell" onclick="tris('cell4')" id="cell4"></div>
+			<div class="medium middle cell" onclick="tris('cell5')" id="cell5"></div>
+			<div class="right middle cell" onclick="tris('cell6')" id="cell6"></div>
+		</div>
+		<div class="row">
+			<div class="left bottom cell" onclick="tris('cell7')" id="cell7"></div>
+			<div class="medium bottom cell" onclick="tris('cell8')" id="cell8"></div>
+			<div class="right bottom cell" onclick="tris('cell9')" id="cell9"></div>
+		</div>
+	</body>
+</html>
